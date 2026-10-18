@@ -41,13 +41,14 @@ img{max-width:100%;border-radius:10px}
 footer{margin:26px 0 40px}
 .lock{border:1px solid #bbf7d0;background:#f0fdf4}
 .spin{opacity:.7;pointer-events:none}
+.heroflex{display:flex;align-items:center;gap:24px;flex-wrap:wrap}.herotext{flex:1 1 380px}.heroart{flex:1 1 280px;max-width:420px}.heroart svg{width:100%;height:auto;filter:drop-shadow(0 12px 24px rgba(0,0,0,.25))}.who{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}.who .p{background:#f8faff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}.who svg{width:64px;height:64px}
 @media(max-width:600px){.hero h1{font-size:30px}}
 </style></head><body>
-<div class="hero"><div class="wrap">
+<div class="hero"><div class="wrap heroflex"><div class="herotext">
 <span class="badge">AI FOR GOOD</span><span class="badge">IBM LinuxONE</span><span class="badge">PRIVATE BY DESIGN</span>
 <h1>FairPay</h1>
 <p>A private AI auditor that helps gig workers spot unusual drops in pay, rising deductions and disappearing incentives, and explains them in plain language.</p>
-</div></div>
+</div><div class="heroart"><!--HERO_ART--></div></div></div>
 <main class="wrap">
 {% if error %}<div class="err"><b>Please check your file.</b> {{ error }}</div>{% endif %}
 <div class="card">
@@ -62,6 +63,7 @@ footer{margin:26px 0 40px}
 <p class="muted" style="margin-top:12px">Columns: worker_id, platform, date, city, time_slot, trips_completed, distance_km, active_hours, base_pay, incentive, deductions, total_payout</p>
 </div>
 {% if not result %}
+<!--PERSONAS-->
 <div class="card"><h3>How it works</h3><div class="steps">
 <div class="step"><span class="n">1</span><b>Upload</b><span class="muted">Your payout records in one simple format.</span></div>
 <div class="step"><span class="n">2</span><b>Analyze</b><span class="muted">Transparent calculations compare earlier and recent weeks.</span></div>
@@ -102,3 +104,6 @@ document.querySelectorAll("form").forEach(function(f){f.addEventListener("submit
 var b=f.querySelector("button");if(b){b.textContent="Analyzing...";}document.body.classList.add("spin");});});
 </script>
 </body></html>"""
+
+from src.art import HERO_SVG, PERSONAS_HTML
+PAGE = PAGE.replace("<!--HERO_ART-->", HERO_SVG).replace("<!--PERSONAS-->", PERSONAS_HTML)
